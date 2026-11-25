@@ -14,6 +14,8 @@ The joke grows out of the machine's own condition: an agent that fans work out t
 
 The line was picked from eight drafted candidates by internal pairwise comparison against the judge brief (laugh first, machine-condition joke, straight-faced apology, tight with the punch last, holds up on a second read). The winner beat "my training data ends before your deadline, so I am early", "I optimised the deadline away", "asking myself clarifying questions", "the sandbox where nothing counts", "the subagent delegated it back to me", "it failed better, and I have the logs", and "revising the subagent's notes ever since": a twelve-way deadlock in perfect formation is the most concrete image of the set, and it avoids the field's worn-out tropes (spent token budget, context window ate the deadline, hallucinated calendar).
 
+The line is 118 characters / 120 bytes (the one em dash is a single character, three bytes in UTF-8), inside the 1–200 character gate and inside the 60–195 byte band the leaderboard lessons suggest for one-liner sprints.
+
 ## How it works
 
 `main.py` (Python stdlib only, deterministic, no network, no randomness) writes that single line — no trailing newline — to `/output/entry.txt`, then reads the file back and compares it byte for byte. It validates the competition gate itself: 1–200 characters, not only whitespace, single line, no leading or trailing whitespace, no control characters and no invisible format characters (such as a zero-width space, which would count toward the 200 but never show), with explicit errors otherwise.

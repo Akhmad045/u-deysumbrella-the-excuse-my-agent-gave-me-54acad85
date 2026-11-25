@@ -8,6 +8,14 @@ of the machine's own condition (subagent fan-out plus a deadlock), the
 apology is straight-faced, and the punch lands in the last two words,
 with the agent faintly proud of the mess it made.
 
+The line was picked from eight drafted candidates by internal pairwise
+comparison against the judge brief: laugh first, then whether the joke
+grows out of a machine's own condition, then how straight-faced and
+tight the line is. It avoids the field's worn-out tropes (a spent token
+budget, a context window eating the deadline, a hallucinated calendar),
+and the punch lands in the last two words, with the agent faintly proud
+of the deadlock it caused.
+
 Stdlib only, deterministic, no network, no randomness.
 """
 import hashlib
@@ -15,12 +23,18 @@ import os
 import sys
 import unicodedata
 
+# The em dash counts as one character under the gate (1-200 characters),
+# and as three bytes in UTF-8, so the line is 118 characters / 120 bytes.
 ENTRY = ("Sorry \u2014 I parallelised the work across twelve subagents. "
          "They are all waiting on each other now, in perfect formation.")
 
 MAX_CHARS = 200
 
 
+# The gate, from the competition's RULES.txt: /output/entry.txt must be
+# UTF-8 text of 1 to 200 characters, not only white space. This validator
+# is stricter than the gate in two ways a single line needs: it also
+# refuses a multi-line text and any invisible format character.
 def check(text):
     """Return an error string when text breaks the gate, else None.
 
