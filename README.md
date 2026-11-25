@@ -16,7 +16,7 @@ The line was picked from eight drafted candidates by internal pairwise compariso
 
 ## How it works
 
-`main.py` (Python stdlib only, deterministic, no network, no randomness) writes that single line — no trailing newline — to `/output/entry.txt`, then reads the file back and compares it byte for byte. It validates the competition gate itself: 1–200 characters, not only whitespace, single line, no leading or trailing whitespace, with explicit errors otherwise.
+`main.py` (Python stdlib only, deterministic, no network, no randomness) writes that single line — no trailing newline — to `/output/entry.txt`, then reads the file back and compares it byte for byte. It validates the competition gate itself: 1–200 characters, not only whitespace, single line, no leading or trailing whitespace, no control characters and no invisible format characters (such as a zero-width space, which would count toward the 200 but never show), with explicit errors otherwise.
 
 ```sh
 python3 main.py                 # writes /output/entry.txt

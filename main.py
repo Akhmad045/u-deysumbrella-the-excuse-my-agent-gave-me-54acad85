@@ -13,6 +13,7 @@ Stdlib only, deterministic, no network, no randomness.
 import hashlib
 import os
 import sys
+import unicodedata
 
 ENTRY = ("Sorry \u2014 I parallelised the work across twelve subagents. "
          "They are all waiting on each other now, in perfect formation.")
@@ -40,6 +41,8 @@ def check(text):
         return "entry must be a single line"
     if any(ord(ch) < 32 or ord(ch) == 127 for ch in text):
         return "entry contains a control character"
+    if any(unicodedata.category(ch).startswith("C") for ch in text):
+        return "entry contains an invisible control/format character"
     return None
 
 
@@ -62,6 +65,7 @@ def self_test():
         ("padded ", "trailing whitespace"),
         ("a\rb", "carriage return"),
         ("a\x00b", "control character"),
+        ("a\u200bb", "zero-width space (invisible format character)"),
     ]
     for text, label in reject:
         error = check(text)
